@@ -78,6 +78,15 @@ void multiply(long vec[COLS], long arr[ROWS][COLS], long result[COLS]) {
     }
 }
 
+void multiply(double vec[COLS], double arr[ROWS][COLS], double result[COLS]) {
+    for (int i = 0; i < COLS; ++i) {
+        result[i] = 0;
+        for (int j = 0; j < ROWS; ++j) {
+            result[i] += vec[j] * arr[j][i];
+        }
+    }
+}
+
 int main() 
 {
     int arr[ROWS][COLS];
@@ -99,6 +108,7 @@ int main()
     int result_rev[COLS];
     float result_float_rev[COLS];
     long result_long_rev[COLS];
+    double result_double_rev[COLS];
 
     srand(time(nullptr));
     for (int i = 0; i < ROWS; i++) {
@@ -177,11 +187,17 @@ int main()
     //auto duration_reverse_float = duration_cast<microseconds>(stop_reverse_float - start_reverse_float); // calculate the elapsed time
     //cout << "Time taken by float 1D 0N 2D function: " << duration_reverse_float.count() << " microseconds" << endl;
 
-    auto start_reverse_long = high_resolution_clock::now();
-    multiply(vec_long, arr_long, result_long_rev);
-    auto stop_reverse_long = high_resolution_clock::now();
-    auto duration_reverse_long = duration_cast<microseconds>(stop_reverse_long - start_reverse_long); // calculate the elapsed time
-    cout << "Time taken by long 1D 0N 2D function: " << duration_reverse_long.count() << " microseconds" << endl;
+    //auto start_reverse_long = high_resolution_clock::now();
+    //multiply(vec_long, arr_long, result_long_rev);
+    //auto stop_reverse_long = high_resolution_clock::now();
+    //auto duration_reverse_long = duration_cast<microseconds>(stop_reverse_long - start_reverse_long); // calculate the elapsed time
+    //cout << "Time taken by long 1D 0N 2D function: " << duration_reverse_long.count() << " microseconds" << endl;
+
+    auto start_reverse_double = high_resolution_clock::now();
+    multiply(vec_double, arr_double, result_double_rev);
+    auto stop_reverse_double = high_resolution_clock::now();
+    auto duration_reverse_double = duration_cast<microseconds>(stop_reverse_double - start_reverse_double); // calculate the elapsed time
+    cout << "Time taken by double 1D 0N 2D function: " << duration_reverse_double.count() << " microseconds" << endl;
 
     return 0;
 }
